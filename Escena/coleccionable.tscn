@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://sv5j2gloys24"]
+
+[ext_resource type="Script" path="res://Escena/coleccionable.gd" id="1_8j8l0"]
+[ext_resource type="Texture2D" uid="uid://062wab5g3r64" path="res://assets/jelly/Jelly (3).png" id="1_l2o4o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dfqa"]
+size = Vector2(303.576, 249.953)
+
+[node name="AtrapaJelly" type="Area2D"]
+script = ExtResource("1_8j8l0")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-1.00001, 3.00001)
+scale = Vector2(0.592814, 0.61032)
+texture = ExtResource("1_l2o4o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.98205, -6.27581)
+scale = Vector2(0.592815, 0.61032)
+shape = SubResource("RectangleShape2D_2dfqa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

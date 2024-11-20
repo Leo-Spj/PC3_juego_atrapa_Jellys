@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://qcdvhuhduysw"]
+
+[ext_resource type="Script" path="res://Escena/game.gd" id="1_7url1"]
+[ext_resource type="PackedScene" uid="uid://c2qith0c2n0tp" path="res://Escena/player.tscn" id="1_nc8nt"]
+[ext_resource type="Texture2D" uid="uid://byp7i6mmuyw0a" path="res://assets/BG.png" id="1_sulmq"]
+[ext_resource type="PackedScene" uid="uid://bcnwyqy80du6l" path="res://Escena/generador_jellys.tscn" id="3_q0i2o"]
+[ext_resource type="AudioStream" uid="uid://6lsngtpvowfb" path="res://sonidos/energetic-bgm_fondo.mp3" id="5_oxlsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jt7rx"]
+size = Vector2(1582, 50.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1ru8"]
+size = Vector2(73, 898)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2n5cp"]
+font_size = 55
+
+[node name="Game" type="Node"]
+script = ExtResource("1_7url1")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(790.5, 456)
+scale = Vector2(0.993029, 0.491076)
+texture = ExtResource("1_sulmq")
+
+[node name="Caja" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Caja"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja/StaticBody2D"]
+position = Vector2(786, 924)
+shape = SubResource("RectangleShape2D_jt7rx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Caja"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja/StaticBody2D2"]
+position = Vector2(49, 449)
+shape = SubResource("RectangleShape2D_v1ru8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Caja"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caja/StaticBody2D3"]
+position = Vector2(1606, 452)
+shape = SubResource("RectangleShape2D_v1ru8")
+
+[node name="Player" parent="." instance=ExtResource("1_nc8nt")]
+position = Vector2(749, 616)
+
+[node name="Jellys" type="Node" parent="."]
+
+[node name="GeneradorJellys" parent="Jellys" instance=ExtResource("3_q0i2o")]
+position = Vector2(1357, 52)
+
+[node name="GeneradorJellys2" parent="Jellys" instance=ExtResource("3_q0i2o")]
+position = Vector2(841, 52)
+
+[node name="GeneradorJellys3" parent="Jellys" instance=ExtResource("3_q0i2o")]
+position = Vector2(339, 52)
+
+[node name="score" type="Label" parent="."]
+offset_left = 628.0
+offset_top = 862.0
+offset_right = 951.0
+offset_bottom = 938.0
+text = "0"
+label_settings = SubResource("LabelSettings_2n5cp")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oxlsp")
+volume_db = -8.732
+autoplay = true

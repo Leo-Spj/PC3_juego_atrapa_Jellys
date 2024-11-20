@@ -1,0 +1,112 @@
+[gd_scene load_steps=23 format=3 uid="uid://c2qith0c2n0tp"]
+
+[ext_resource type="Texture2D" uid="uid://bbu860occ4n27" path="res://assets/Player/idle/Idle (1).png" id="1_3axkw"]
+[ext_resource type="Script" path="res://Escena/player.gd" id="1_cms1i"]
+[ext_resource type="Texture2D" uid="uid://bdhguj5544svg" path="res://assets/Player/idle/Idle (2).png" id="2_ikdau"]
+[ext_resource type="Texture2D" uid="uid://dha65x2oqv8vf" path="res://assets/Player/idle/Idle (3).png" id="3_nnvww"]
+[ext_resource type="Texture2D" uid="uid://3enmf444blso" path="res://assets/Player/idle/Idle (4).png" id="4_awyd5"]
+[ext_resource type="Texture2D" uid="uid://b6iigp58y6s31" path="res://assets/Player/idle/Idle (5).png" id="5_oxgv4"]
+[ext_resource type="Texture2D" uid="uid://hv0f3o617g4m" path="res://assets/Player/idle/Idle (6).png" id="6_lmlqj"]
+[ext_resource type="Texture2D" uid="uid://cpmednn8kvk1w" path="res://assets/Player/idle/Idle (7).png" id="7_thj4a"]
+[ext_resource type="Texture2D" uid="uid://b5cvkp3rbgnr6" path="res://assets/Player/idle/Idle (8).png" id="8_uy0gn"]
+[ext_resource type="Texture2D" uid="uid://ccbv41gwpa2g8" path="res://assets/Player/idle/Idle (9).png" id="9_210uf"]
+[ext_resource type="Texture2D" uid="uid://cuvj5cy12kvq2" path="res://assets/Player/idle/Idle (10).png" id="10_r4mpb"]
+[ext_resource type="Texture2D" uid="uid://f3qtr4xo84q6" path="res://assets/Player/run/Run (1).png" id="11_2q50e"]
+[ext_resource type="Texture2D" uid="uid://1ach604810ik" path="res://assets/Player/run/Run (2).png" id="12_jr74f"]
+[ext_resource type="Texture2D" uid="uid://regsosvciqqg" path="res://assets/Player/run/Run (3).png" id="13_1ovei"]
+[ext_resource type="Texture2D" uid="uid://c3w6gv1cgp4ni" path="res://assets/Player/run/Run (4).png" id="14_ywhpr"]
+[ext_resource type="Texture2D" uid="uid://boymf7ca64s5y" path="res://assets/Player/run/Run (5).png" id="15_ia1yq"]
+[ext_resource type="Texture2D" uid="uid://cdocrk1sl1yr1" path="res://assets/Player/run/Run (6).png" id="16_lnmdq"]
+[ext_resource type="Texture2D" uid="uid://ca7d4gng2ro6u" path="res://assets/Player/run/Run (7).png" id="17_neery"]
+[ext_resource type="Texture2D" uid="uid://bmd1rtjjylamr" path="res://assets/Player/run/Run (8).png" id="18_ies45"]
+[ext_resource type="AudioStream" uid="uid://cnuifv0o8of3e" path="res://sonidos/collect-points.mp3" id="20_fiios"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ri7c"]
+radius = 146.0
+height = 479.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sq7ch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3axkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ikdau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nnvww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_awyd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oxgv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lmlqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_thj4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uy0gn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_210uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r4mpb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2q50e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jr74f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1ovei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ywhpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ia1yq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_lnmdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_neery")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ies45")
+}],
+"loop": true,
+"name": &"run",
+"speed": 16.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_cms1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_8ri7c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-16, -2)
+scale = Vector2(0.862622, 0.931569)
+sprite_frames = SubResource("SpriteFrames_sq7ch")
+animation = &"run"
+frame_progress = 0.506531
+
+[node name="Sonido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_fiios")
+
+[connection signal="ganarPuntos" from="." to="." method="_on_ganar_puntos"]
